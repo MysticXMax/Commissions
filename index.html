@@ -3,341 +3,708 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mystic's Avatar Commissions</title>
-
+    <meta
+      name="description"
+      content="Custom VRChat avatar commissions by Mystic with retextures, clothing, toggles, FX, PC and Quest-ready options."
+    />
+    <title>Mystic Avatar Commissions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-
   <body>
-    <header>
-      <div class="header-container">
-        <h1>Mystic's Avatar Commissions</h1>
-        <nav>
-          <a href="Pages/finished_projects.html" class="nav-link"
-            >View My Finished Work</a
-          >
-        </nav>
-      </div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Mystic Avatar Commissions home">
+        <span class="brand-mark">M</span>
+        <span>
+          Mystic Avatars
+          <small>VRChat commissions</small>
+        </span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation" data-site-nav>
+        <a href="#packages">Packs</a>
+        <a href="#seasonal">Sales</a>
+        <a href="Pages/finished_projects.html">Portfolio</a>
+        <a href="Pages/tos.html">Terms</a>
+        <a class="nav-cta" href="#order">Order</a>
+      </nav>
     </header>
 
-    <main class="container">
-      <section class="countdown">
-        <div id="countdown-box">
-          <strong>Commissions close in:</strong>
-          <span id="countdown">Loading...</span>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-bg"
+          id="randomAvatar"
+          src=""
+          alt="Finished Cristal avatar render"
+        />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Custom VRChat avatar work</p>
+          <h1 id="hero-title">Mystic's Avatar Commissions</h1>
+          <p class="hero-lede">
+            Expressive avatar edits, clean textures, outfit work, toggles, FX,
+            and delivery folders prepared so your character feels ready to show
+            up in-world.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="#packages">View Packs</a>
+            <a
+              class="button button-secondary"
+              href="Pages/finished_projects.html"
+            >
+              Finished Work
+            </a>
+          </div>
+          <div class="hero-stats" aria-label="Commission highlights">
+            <span><strong>10+</strong> showcased avatars</span>
+            <span><strong>1-14</strong> day timelines</span>
+            <span><strong>PC</strong> and Quest options</span>
+          </div>
         </div>
       </section>
 
-      <section class="intro">
-        <p>
-          Looking for a <strong>custom furry goober</strong>? You're in the
-          right place!
-        </p>
-        <p class="note">
-          <strong>Payments accepted via:</strong>
-          PayPal (Friends & Family), Steam/Steam Wallet Codes, or other methods
-          discussed with the client.
-        </p>
+      <section class="announcement" aria-live="polite">
+        <div class="announcement-inner">
+          <div>
+            <p class="eyebrow">Seasonal offer</p>
+            <h2 data-sale-title>Checking holiday offers</h2>
+          </div>
+          <p data-sale-copy>
+            Current and upcoming discounts appear here automatically.
+          </p>
+          <div class="announcement-meta">
+            <span data-sale-code>Code loading</span>
+            <span data-sale-countdown>Loading</span>
+          </div>
+        </div>
       </section>
 
-      <section class="about-me">
-        <div class="section-title">About Me</div>
-        <p>
-          Hey there! I'm Mystic. I specialize in creating furry avatars. Mostly
-          I'm trying to complete any task given if possible.
-        </p>
-      </section>
-
-      <section class="how-it-works">
-        <div class="section-title">How It Works</div>
-        <ol>
-          <li>
-            <strong>Fill out the form:</strong> Add your references, base
-            preference, and details.
-          </li>
-          <li>
-            <strong>Order confirmed:</strong> I’ll DM you on Discord to discuss
-            the specifics.
-          </li>
-          <li>
-            <strong>Progress updates:</strong> You'll receive screenshots to
-            ensure it's looking perfect.
-          </li>
-          <li>
-            <strong>Final delivery:</strong> You get the files and setup
-            instructions!
-          </li>
-        </ol>
-      </section>
-
-      <div class="warning">
-        ⚠️ <strong>Note:</strong> Every commission pack comes with a detailed
-        text guide. You'll receive a well-organized folder and easy-to-follow
-        steps on how to setup based on your order.
-      </div>
-
-      <section class="pricing-section">
-        <div class="section-title">Choose Your Tier</div>
-        <div class="pricing-grid">
-          <div class="pricing-card basic">
-            <h3>Basic Pack</h3>
-            <div class="price">5€</div>
+      <section class="section">
+        <div class="section-inner intro-grid">
+          <div class="section-copy">
+            <p class="eyebrow">Built around your character</p>
+            <h2>
+              Make the avatar feel like yours before anyone reads the name.
+            </h2>
             <p>
-              For concept art or static previews.
-              <strong>Not VRChat-ready.</strong>
+              Every order starts with references, base choice, mood, colors,
+              clothing scope, and platform needs. You get progress screenshots
+              before delivery, then a clear final folder with the files and
+              setup notes agreed for your pack.
             </p>
-            <ul>
-              <li>🕒 1-day delivery</li>
-              <li>🎨 Basic retexture</li>
-              <li>🖼️ PNG/JPG preview only</li>
-            </ul>
-            <button onclick="openForm('Basic Pack')" class="btn">
-              Order Now
-            </button>
           </div>
-
-          <div class="pricing-card starter">
-            <h3>Starter Pack</h3>
-            <div class="price">10€</div>
-            <p>Includes everything from Basic + VRChat starter files.</p>
-            <ul>
-              <li>🕒 1-2 day delivery</li>
-              <li>📁 SPP + Blender file included</li>
-              <li>🎨 Retexture (Audiolink optional)</li>
-            </ul>
-            <button onclick="openForm('Starter Pack')" class="btn">
-              Order Now
-            </button>
-          </div>
-
-          <div class="pricing-card premium">
-            <h3>Premium Pack</h3>
-            <div class="price">20€</div>
-            <p>Full VRChat setup with custom clothing.</p>
-            <ul>
-              <li>🕒 2-5 day delivery</li>
-              <li>👕 Custom clothing options</li>
-              <li>🛠️ PC + Quest compatibility</li>
-            </ul>
-            <button onclick="openForm('Premium Pack')" class="btn">
-              Order Now
-            </button>
-          </div>
-
-          <div class="pricing-card ultimate">
-            <h3>Ultimate Pack</h3>
-            <div class="price">30€</div>
-            <p>Maximum expression with FX and custom toggles.</p>
-            <ul>
-              <li>🕒 1-2 week delivery</li>
-              <li>🎞️ FX (Audiolink, Emission, Particles)</li>
-              <li>🎵 Custom emotes & toggles</li>
-            </ul>
-            <button onclick="openForm('Ultimate Pack')" class="btn">
-              Order Now
-            </button>
-          </div>
-
-          <div class="pricing-card celestial">
-            <div class="celestial-effects">
-              <div class="star-field"></div>
-            </div>
-            <h3>🌌 Celestial Pack</h3>
-            <div class="price">40€+</div>
-            <p>Everything from Ultimate + cinematic polish.</p>
-            <ul>
-              <li>⏳ 2+ weeks delivery</li>
-              <li>🌈 Custom Blender modeling</li>
-              <li>🎬 Promo video spotlight</li>
-            </ul>
-            <button onclick="openForm('Celestial Pack')" class="btn">
-              Order Now
-            </button>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Texture Identity</h3>
+              <p>Colorways, markings, material feel, and small details.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Avatar Setup</h3>
+              <p>Starter files, Unity-ready delivery, PC and Quest choices.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Expression Work</h3>
+              <p>Toggles, emissions, particles, emotes, and avatar polish.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Clear Updates</h3>
+              <p>Discord check-ins with screenshots before final delivery.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <div id="premium-warning" class="warning hidden">
-        ⚠️ <strong>Important:</strong> You're ordering a high-tier commission.
-        Please ensure you truly need everything included in this pack.
-      </div>
-
-      <section class="form-container" style="display: none">
-        <div class="section-title" id="form-title">📝 Commission Request</div>
-
-        <form id="order-form" onsubmit="submitForm(event)">
-          <label for="name">Character Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            minlength="4"
-            required
-            placeholder="Example: Skyflame"
-          />
-
-          <label for="description">Avatar Description</label>
-          <textarea
-            id="description"
-            name="description"
-            rows="5"
-            minlength="30"
-            maxlength="500"
-            required
-            placeholder="Describe personality, colors, specific markings..."
-          ></textarea>
-
-          <label for="style">Avatar Base</label>
-          <select
-            id="style"
-            name="style"
-            required
-            onchange="handleAvatarBaseChange()"
-          >
-            <option value="Regulus">Regulus</option>
-            <option value="Novabeast">Novabeast</option>
-            <option value="Nardoragon">Nardoragon</option>
-            <option value="Protogen">Protogen</option>
-            <option value="Mayu">Mayu</option>
-            <option value="Rexouium">Rexouium</option>
-            <option value="Taidum">Taidum</option>
-            <option value="Regulus 3.0">Regulus 3.0</option>
-            <option value="Other">Other (Type Below)</option>
-          </select>
-
-          <div id="customBaseWrapper" class="hidden">
-            <label for="custom-base">Custom Base Name</label>
-            <input
-              type="text"
-              id="custom-base"
-              name="custom-base"
-              placeholder="Enter the name of the base"
-            />
+      <section class="section section-contrast" id="packages">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Commission packs</p>
+            <h2>Pick the scope that matches your avatar.</h2>
+            <p>
+              Prices are starting points in EUR. Complex assets, rush requests,
+              or custom modeling can change the final quote after Discord
+              review.
+            </p>
           </div>
 
-          <div id="clothing-options" class="hidden">
-            <label for="clothing">Clothing Amount</label>
-            <select id="clothing" name="clothing">
-              <option value="None">None</option>
-              <option value="2 Pieces">2 Pieces</option>
-              <option value="3 Pieces">3 Pieces</option>
-              <option value="4 Pieces">4 Pieces</option>
-              <option value="5+ Pieces">5+ Pieces</option>
-            </select>
-          </div>
-
-          <label for="file">Reference Images (Max 5)</label>
-          <div class="file-upload-wrapper">
-            <input
-              type="file"
-              id="file"
-              name="file"
-              accept="image/*"
-              multiple
-            />
-            <label for="file" class="upload-btn">📁 Choose Images</label>
-            <div id="file-name" class="file-name">No files selected</div>
-          </div>
-
-          <div id="image-preview-wrapper" class="image-preview-wrapper hidden">
-            <h4>Selected Previews:</h4>
-            <div id="image-preview" class="image-preview-list"></div>
-            <div class="checkbox-wrapper">
-              <input type="checkbox" id="preview-confirm" />
-              <label for="preview-confirm"
-                >I confirm these images are correct.</label
+          <div class="package-grid">
+            <article class="package-card" data-package-card data-price="5">
+              <div class="package-topline">
+                <span>Basic</span>
+                <span>Preview</span>
+              </div>
+              <h3>Basic Pack</h3>
+              <p class="package-price">
+                <span class="base-price">EUR 5</span>
+                <span class="sale-price" data-sale-price></span>
+              </p>
+              <p>
+                A simple visual pass for concepts, references, or static
+                previews.
+              </p>
+              <ul>
+                <li>1 day estimated delivery</li>
+                <li>Basic retexture</li>
+                <li>PNG or JPG preview</li>
+                <li>Not VRChat-ready</li>
+              </ul>
+              <button
+                class="button button-primary"
+                type="button"
+                data-pack="Basic Pack"
               >
-            </div>
-          </div>
+                Start Basic
+              </button>
+            </article>
 
-          <label for="discord-id">Discord Username</label>
-          <input
-            type="text"
-            id="discord-id"
-            name="discord-id"
-            required
-            placeholder="e.g. mystic_user"
-          />
+            <article class="package-card" data-package-card data-price="10">
+              <div class="package-topline">
+                <span>Starter</span>
+                <span>Files</span>
+              </div>
+              <h3>Starter Pack</h3>
+              <p class="package-price">
+                <span class="base-price">EUR 10</span>
+                <span class="sale-price" data-sale-price></span>
+              </p>
+              <p>
+                A clean starting package with editable files for a VRChat build.
+              </p>
+              <ul>
+                <li>1-2 day estimated delivery</li>
+                <li>SPP and Blender file included</li>
+                <li>Retexture with optional Audiolink direction</li>
+                <li>Organized delivery folder</li>
+              </ul>
+              <button
+                class="button button-primary"
+                type="button"
+                data-pack="Starter Pack"
+              >
+                Start Starter
+              </button>
+            </article>
 
-          <input type="hidden" id="selected-pack" name="pack" />
-
-          <div class="checkbox-wrapper">
-            <input type="checkbox" id="accept-tos" name="accept-tos" required />
-            <label for="accept-tos"
-              >I agree to the
-              <a href="Pages/tos.html" target="_blank">Terms of Service</a
-              >.</label
+            <article
+              class="package-card highlighted"
+              data-package-card
+              data-price="20"
             >
-          </div>
+              <div class="package-topline">
+                <span>Popular</span>
+                <span>Setup</span>
+              </div>
+              <h3>Premium Pack</h3>
+              <p class="package-price">
+                <span class="base-price">EUR 20</span>
+                <span class="sale-price" data-sale-price></span>
+              </p>
+              <p>
+                A fuller avatar setup for people who want custom clothing and
+                in-world polish.
+              </p>
+              <ul>
+                <li>2-5 day estimated delivery</li>
+                <li>Custom clothing options</li>
+                <li>PC and Quest compatibility choices</li>
+                <li>Progress screenshots before final delivery</li>
+              </ul>
+              <button
+                class="button button-primary"
+                type="button"
+                data-pack="Premium Pack"
+              >
+                Start Premium
+              </button>
+            </article>
 
-          <div class="notice">⚠️ <strong>All sales are final.</strong></div>
+            <article class="package-card" data-package-card data-price="30">
+              <div class="package-topline">
+                <span>Ultimate</span>
+                <span>FX</span>
+              </div>
+              <h3>Ultimate Pack</h3>
+              <p class="package-price">
+                <span class="base-price">EUR 30</span>
+                <span class="sale-price" data-sale-price></span>
+              </p>
+              <p>
+                Extra expression with FX work, toggles, and a stronger
+                personality pass.
+              </p>
+              <ul>
+                <li>1-2 week estimated delivery</li>
+                <li>Audiolink, emission, or particle direction</li>
+                <li>Custom emotes and toggles</li>
+                <li>High-tier Discord planning</li>
+              </ul>
+              <button
+                class="button button-primary"
+                type="button"
+                data-pack="Ultimate Pack"
+              >
+                Start Ultimate
+              </button>
+            </article>
 
-          <div style="margin-top: 25px">
-            <button type="submit" class="btn submit">Submit Order</button>
-            <button type="button" class="cancel-btn" onclick="cancelOrder()">
-              Cancel
-            </button>
+            <article
+              class="package-card showcase"
+              data-package-card
+              data-price="40"
+            >
+              <div class="package-topline">
+                <span>Celestial</span>
+                <span>Custom</span>
+              </div>
+              <h3>Celestial Pack</h3>
+              <p class="package-price">
+                <span class="base-price">EUR 40+</span>
+                <span class="sale-price" data-sale-price></span>
+              </p>
+              <p>
+                The full spotlight package for custom modeling requests and
+                cinematic finishing.
+              </p>
+              <ul>
+                <li>2+ week estimated delivery</li>
+                <li>Custom Blender modeling discussion</li>
+                <li>Promo video spotlight option</li>
+                <li>Priority planning session</li>
+              </ul>
+              <button
+                class="button button-primary"
+                type="button"
+                data-pack="Celestial Pack"
+              >
+                Start Celestial
+              </button>
+            </article>
           </div>
-        </form>
+        </div>
       </section>
 
-      <footer>
-        <h3>Connect With Me</h3>
-        <ul class="social-links">
-          <li>
-            <a href="https://www.youtube.com/@MysticXMac" target="_blank"
-              >📺 YouTube</a
-            >
-          </li>
-          <li>
-            <a href="https://x.com/MysticXMac" target="_blank">🐦 Twitter</a>
-          </li>
-        </ul>
-      </footer>
+      <section class="section" id="seasonal">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Seasonal sales</p>
+            <h2>Holiday discounts for gifting, events, and cozy rebuilds.</h2>
+            <p>
+              The page detects active offers automatically and applies the
+              discount to visible pack prices when an offer is live.
+            </p>
+          </div>
+          <div class="offer-grid">
+            <article class="offer-card" data-offer-card="new-year">
+              <span>Jan 1 - Jan 6</span>
+              <h3>New Year Reset</h3>
+              <p>10% off fresh avatar edits, file cleanup, and planning.</p>
+              <strong>Code NEWYEAR10</strong>
+            </article>
+            <article class="offer-card" data-offer-card="spring-sale">
+              <span>Mar 20 - Apr 5</span>
+              <h3>Spring Refresh</h3>
+              <p>10% off bright texture edits and fresh style changes.</p>
+              <strong>Code SPRING10</strong>
+            </article>
+            <article class="offer-card" data-offer-card="summer-sale">
+              <span>Jun 10 - Jun 24</span>
+              <h3>Summer Glow</h3>
+              <p>12% off emissions, Audiolink direction, and soft glow work.</p>
+              <strong>Code SUMMER12</strong>
+            </article>
+            <article class="offer-card" data-offer-card="black-friday">
+              <span>Nov 15 - Nov 29</span>
+              <h3>Black Friday Slots</h3>
+              <p>
+                20% off gift-ready commissions booked before the December rush.
+              </p>
+              <strong>Code BLACK20</strong>
+            </article>
+            <article class="offer-card" data-offer-card="holiday-prep">
+              <span>Nov 30 - Dec 6</span>
+              <h3>Holiday Prep Week</h3>
+              <p>15% off Premium and higher setup requests.</p>
+              <strong>Code HOLIDAY15</strong>
+            </article>
+            <article class="offer-card" data-offer-card="christmas-warmup">
+              <span>Dec 7 - Dec 19</span>
+              <h3>Christmas Warm-Up</h3>
+              <p>
+                18% off final pre-Christmas planning before the queue closes.
+              </p>
+              <strong>Code WARM18</strong>
+            </article>
+            <article class="offer-card" data-offer-card="christmas">
+              <span>Dec 20 - Dec 26</span>
+              <h3>Christmas Thank You</h3>
+              <p>
+                25% off new-year planning deposits while holiday slots last.
+              </p>
+              <strong>Code XMAS25</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-contrast">
+        <div class="section-inner process-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Order flow</p>
+            <h2>Simple, clear, and made for custom work.</h2>
+            <p>
+              Your references and details shape the quote first. Once the scope
+              is confirmed, you receive updates during the build and a final
+              delivery folder after payment is complete.
+            </p>
+          </div>
+          <ol class="process-list">
+            <li>
+              <span>01</span>
+              <strong>Send the brief</strong>
+              <p>Choose a pack, base, references, outfit scope, and mood.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>Confirm on Discord</strong>
+              <p>Scope, price, timeline, and asset ownership are checked.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>Review progress</strong>
+              <p>Work-in-progress screenshots keep the avatar on target.</p>
+            </li>
+            <li>
+              <span>04</span>
+              <strong>Receive delivery</strong>
+              <p>Final files, agreed setup notes, and support window arrive.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section portfolio-strip" aria-labelledby="work-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Finished avatars</p>
+            <h2 id="work-title">A few characters from the workshop.</h2>
+          </div>
+          <div class="avatar-strip">
+            <img src="avatars/1.png" alt="Erolic avatar preview" />
+            <img src="avatars/7.png" alt="Cristal avatar preview" />
+            <img src="avatars/9.png" alt="Kenith avatar preview" />
+            <img src="avatars/11.1.png" alt="Blaze avatar preview" />
+          </div>
+          <a
+            class="button button-secondary"
+            href="Pages/finished_projects.html"
+          >
+            See Full Portfolio
+          </a>
+        </div>
+      </section>
+
+      <section class="section section-contrast order-section" id="order">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Commission request</p>
+            <h2>Tell me what the avatar should become.</h2>
+            <p>
+              Pick a pack above to prefill the order summary, or fill the form
+              after choosing the scope you want.
+            </p>
+          </div>
+
+          <div class="order-panel" hidden data-order-panel>
+            <div
+              class="order-summary"
+              id="order-summary"
+              aria-live="polite"
+            ></div>
+            <form id="order-form" novalidate>
+              <input type="hidden" id="selected-pack" name="pack" />
+              <input type="hidden" id="seasonal-offer" name="seasonal-offer" />
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Character name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    minlength="3"
+                    required
+                    placeholder="Example: Skyflame"
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="discord-id">Discord username</label>
+                  <input
+                    type="text"
+                    id="discord-id"
+                    name="discord-id"
+                    required
+                    placeholder="Example: mystic_user"
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="style">Avatar base</label>
+                  <select id="style" name="style" required>
+                    <option value="Regulus">Regulus</option>
+                    <option value="Novabeast">Novabeast</option>
+                    <option value="Nardoragon">Nardoragon</option>
+                    <option value="Protogen">Protogen</option>
+                    <option value="Mayu">Mayu</option>
+                    <option value="Rexouium">Rexouium</option>
+                    <option value="Taidum">Taidum</option>
+                    <option value="Regulus 3.0">Regulus 3.0</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="field" hidden data-custom-base>
+                  <label for="custom-base">Custom base name</label>
+                  <input
+                    type="text"
+                    id="custom-base"
+                    name="custom-base"
+                    placeholder="Base name or link"
+                  />
+                </div>
+
+                <div class="field" hidden data-clothing-options>
+                  <label for="clothing">Clothing amount</label>
+                  <select id="clothing" name="clothing">
+                    <option value="None">None</option>
+                    <option value="2 Pieces">2 pieces</option>
+                    <option value="3 Pieces">3 pieces</option>
+                    <option value="4 Pieces">4 pieces</option>
+                    <option value="5+ Pieces">5+ pieces</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="payment">Payment preference</label>
+                  <select id="payment" name="payment" required>
+                    <option value="PayPal Friends and Family">
+                      PayPal Friends and Family
+                    </option>
+                    <option value="Steam Wallet Code">Steam Wallet Code</option>
+                    <option value="Discuss on Discord">
+                      Discuss on Discord
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="description">Avatar description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="6"
+                  minlength="30"
+                  maxlength="1500"
+                  required
+                  placeholder="Describe colors, markings, personality, outfit ideas, toggles, FX, and anything the avatar must include."
+                ></textarea>
+              </div>
+
+              <fieldset class="extras-field">
+                <legend>Optional extras</legend>
+                <label>
+                  <input type="checkbox" name="extras" value="Audiolink" />
+                  Audiolink
+                </label>
+                <label>
+                  <input type="checkbox" name="extras" value="Emission" />
+                  Emission
+                </label>
+                <label>
+                  <input type="checkbox" name="extras" value="Particles" />
+                  Particles
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Custom gestures"
+                  />
+                  Custom gestures
+                </label>
+                <label>
+                  <input type="checkbox" name="extras" value="Promo showcase" />
+                  Promo showcase
+                </label>
+              </fieldset>
+
+              <div class="field">
+                <label for="file">Reference images</label>
+                <div class="file-upload">
+                  <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    accept="image/*"
+                    multiple
+                  />
+                  <label class="upload-button" for="file"
+                    >Choose up to 5 images</label
+                  >
+                  <span id="file-name">No files selected</span>
+                </div>
+              </div>
+
+              <div class="preview-area" hidden data-preview-wrapper>
+                <h3>Selected references</h3>
+                <div class="preview-list" id="image-preview"></div>
+                <label class="check-row">
+                  <input type="checkbox" id="preview-confirm" />
+                  I confirm these images are correct.
+                </label>
+              </div>
+
+              <label class="check-row">
+                <input
+                  type="checkbox"
+                  id="accept-tos"
+                  name="accept-tos"
+                  required
+                />
+                I agree to the
+                <a href="Pages/tos.html" target="_blank" rel="noreferrer">
+                  Terms of Service
+                </a>
+                .
+              </label>
+
+              <div class="notice">
+                All custom work is final once production begins. Asset licenses
+                and base ownership must be valid before delivery.
+              </div>
+
+              <div class="form-actions">
+                <button class="button button-primary submit" type="submit">
+                  Submit Order
+                </button>
+                <button
+                  class="button button-ghost"
+                  type="button"
+                  data-cancel-order
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <div id="submission-overlay" class="overlay hidden">
+    <footer class="site-footer">
+      <div>
+        <h2>Mystic Avatars</h2>
+        <p>Custom VRChat avatar commissions, finished with care.</p>
+      </div>
+      <nav aria-label="Social links">
+        <a
+          href="https://www.youtube.com/@MysticXMac"
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTube
+        </a>
+        <a href="https://x.com/MysticXMac" target="_blank" rel="noreferrer">
+          Twitter
+        </a>
+      </nav>
+    </footer>
+
+    <div
+      class="overlay hidden"
+      id="submission-overlay"
+      role="status"
+      aria-live="assertive"
+    >
       <div class="overlay-content">
-        <h3>⏳ Submitting...</h3>
-        <p>Please wait, this can take up to a minute.</p>
+        <h2>Submitting</h2>
+        <p>Please wait. This can take up to a minute.</p>
       </div>
     </div>
 
-    <div id="submission-success" class="overlay hidden">
+    <div
+      class="overlay hidden"
+      id="submission-success"
+      role="dialog"
+      aria-modal="true"
+    >
       <div class="overlay-content">
-        <h3>✅ Submission Successful!</h3>
-        <p>Thank you! I’ll reach out via Discord as soon as possible.</p>
-        <button class="btn" onclick="closeSuccess()" style="margin-top: 20px">
+        <h2>Submission successful</h2>
+        <p>Thank you. I will reach out through Discord as soon as possible.</p>
+        <br />
+        <button class="button button-primary" type="button" data-close-success>
           Close
         </button>
       </div>
     </div>
 
-    <div id="custom-modal" class="overlay hidden">
+    <div
+      class="overlay hidden"
+      id="custom-modal"
+      role="dialog"
+      aria-modal="true"
+    >
       <div class="overlay-content">
-        <div id="modal-message">⚠️ Message</div>
-        <div
-          style="
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-          "
-        >
-          <button class="btn" id="modal-confirm">OK</button>
-          <button class="btn hidden" id="modal-cancel">Cancel</button>
+        <p id="modal-message">Message</p>
+        <div class="modal-actions">
+          <button
+            class="button button-primary"
+            type="button"
+            id="modal-confirm"
+          >
+            OK
+          </button>
+          <button
+            class="button button-ghost hidden"
+            type="button"
+            id="modal-cancel"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
 
-    <script src="Scripts/script.js" defer></script>
-    <script src="Scripts/handler.js" defer></script>
+    <div
+      class="overlay hidden"
+      id="overlay-closed"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="overlay-content" data-closed-content>
+        <h2>Commissions closed</h2>
+        <p>The queue will reopen soon.</p>
+      </div>
+    </div>
+
+    <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/seasonal.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
   </body>
 </html>

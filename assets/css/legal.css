@@ -1,0 +1,122 @@
+.legal-page {
+  background: #10151a;
+}
+
+.legal-shell {
+  width: min(920px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 68px 0 90px;
+}
+
+.legal-hero {
+  padding: 34px 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-hero h1 {
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 3.4rem;
+}
+
+.legal-hero p:last-child {
+  margin-top: 12px;
+  color: var(--soft);
+}
+
+.legal-highlight,
+.legal-section {
+  margin-top: 22px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.legal-highlight {
+  border-color: rgba(101, 224, 189, 0.5);
+  background: rgba(101, 224, 189, 0.1);
+}
+
+.legal-highlight h2,
+.legal-section h2 {
+  color: var(--text);
+  font-size: 1.45rem;
+}
+
+.legal-highlight p,
+.legal-section p {
+  margin-top: 14px;
+  color: var(--soft);
+}
+
+.legal-section ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  list-style: none;
+}
+
+.legal-section li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--soft);
+}
+
+.legal-section li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--amber);
+  content: "";
+}
+
+.legal-section strong {
+  color: var(--mint);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 46px;
+  height: 46px;
+  display: none;
+  border: 1px solid rgba(101, 224, 189, 0.55);
+  border-radius: var(--radius);
+  background: rgba(14, 18, 22, 0.92);
+  color: var(--mint);
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.back-to-top.is-visible {
+  display: grid;
+  place-items: center;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: var(--mint);
+  color: #08110f;
+  outline: none;
+}
+
+@media (max-width: 680px) {
+  .legal-shell {
+    width: calc(100% - 36px);
+    padding: 48px 0 70px;
+  }
+
+  .legal-hero h1 {
+    font-size: 2.45rem;
+  }
+
+  .legal-highlight,
+  .legal-section {
+    padding: 20px;
+  }
+}

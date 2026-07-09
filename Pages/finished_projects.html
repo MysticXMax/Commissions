@@ -3,137 +3,157 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finished Projects | Mystic's Avatars</title>
-
+    <meta
+      name="description"
+      content="Finished avatar examples from Mystic Avatar Commissions."
+    />
+    <title>Finished Avatars | Mystic Avatar Commissions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../finished.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/gallery.css" />
   </head>
-
   <body>
-    <header>
-      <div class="header-container">
-        <h1><span class="highlight">Mystic's</span> Finished Avatars</h1>
-        <nav>
-          <a
-            href="../index.html"
-            class="nav-link"
-            aria-label="Back to the main page"
-          >
-            ← Back to Main Page
-          </a>
-        </nav>
-      </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Mystic Avatar Commissions home">
+        <span class="brand-mark">M</span>
+        <span>
+          Mystic Avatars
+          <small>Finished work</small>
+        </span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Main navigation" data-site-nav>
+        <a href="../index.html#packages">Packs</a>
+        <a href="../index.html#seasonal">Sales</a>
+        <a href="../index.html#order">Order</a>
+        <a href="tos.html">Terms</a>
+      </nav>
     </header>
 
-    <main class="gallery-container">
-      <section class="avatar-group">
-        <h2 class="group-title">Regulus</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar1')">
-            <img src="../avatars/1.png" alt="Erolic - Regulus Avatar" />
-            <p>Erolic</p>
-          </div>
-          <div class="avatar-card" onclick="openDetails('avatar3')">
-            <img src="../avatars/3.png" alt="Mistic - Regulus Avatar" />
-            <p>Mistic</p>
-          </div>
-          <div class="avatar-card" onclick="openDetails('avatar5')">
-            <img src="../avatars/5.png" alt="Loufy - Regulus Avatar" />
-            <p>Loufy</p>
-          </div>
-          <div class="avatar-card" onclick="openDetails('avatar6')">
-            <img src="../avatars/6.png" alt="Ara - Regulus Avatar" />
-            <p>Ara</p>
-          </div>
+    <main>
+      <section class="gallery-hero">
+        <img src="../avatars/111.png" alt="Finished Blaze avatar render" />
+        <div class="gallery-hero-copy">
+          <p class="eyebrow">Portfolio</p>
+          <h1>Finished avatar work</h1>
+          <p>
+            A focused look at completed character edits across Regulus, Mayu,
+            Novabeast, Nardoragon, and custom model directions.
+          </p>
         </div>
       </section>
 
-      <section class="avatar-group">
-        <h2 class="group-title">Regulus 3.0 (Mayu X Regulus)</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar2')">
-            <img src="../avatars/2.png" alt="Erolis - Regulus 3.0 Avatar" />
-            <p>Erolis</p>
+      <section class="portfolio-section">
+        <div class="portfolio-group">
+          <div class="portfolio-heading">
+            <p class="eyebrow">Base type</p>
+            <h2>Regulus</h2>
           </div>
-          <div class="avatar-card" onclick="openDetails('avatar7')">
-            <img src="../avatars/7.png" alt="Cristal - Regulus 3.0 Avatar" />
-            <p>Cristal</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="avatar-group">
-        <h2 class="group-title">Mayu Models</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar8')">
-            <img src="../avatars/8.png" alt="Stas - Mayu Avatar" />
-            <p>Stas</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="avatar-group">
-        <h2 class="group-title">Novabeast</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar9')">
-            <img src="../avatars/9.png" alt="Kenith - Novabeast Avatar" />
-            <p>Kenith</p>
+          <div class="gallery-grid">
+            <button class="avatar-card" type="button" data-avatar="avatar1">
+              <img src="../avatars/1.png" alt="Erolic Regulus avatar" />
+              <span>Erolic</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar3">
+              <img src="../avatars/3.png" alt="Mistic Regulus avatar" />
+              <span>Mistic</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar5">
+              <img src="../avatars/5.png" alt="Loufy Regulus avatar" />
+              <span>Loufy</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar6">
+              <img src="../avatars/6.png" alt="Ara Regulus avatar" />
+              <span>Ara</span>
+            </button>
           </div>
         </div>
-      </section>
 
-      <section class="avatar-group">
-        <h2 class="group-title">Nardodragon</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar4')">
-            <img src="../avatars/4.png" alt="Null - Nardodragon Avatar" />
-            <p>Null</p>
+        <div class="portfolio-group">
+          <div class="portfolio-heading">
+            <p class="eyebrow">Base type</p>
+            <h2>Regulus 3.0</h2>
+          </div>
+          <div class="gallery-grid">
+            <button class="avatar-card" type="button" data-avatar="avatar2">
+              <img src="../avatars/2.png" alt="Erolis Regulus 3.0 avatar" />
+              <span>Erolis</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar7">
+              <img src="../avatars/7.png" alt="Cristal Regulus 3.0 avatar" />
+              <span>Cristal</span>
+            </button>
           </div>
         </div>
-      </section>
 
-      <section class="avatar-group">
-        <h2 class="group-title">Other Models</h2>
-        <div class="gallery">
-          <div class="avatar-card" onclick="openDetails('avatar10')">
-            <img src="../avatars/11.1.png" alt="Blaze Avatar" />
-            <p>Blaze</p>
+        <div class="portfolio-group">
+          <div class="portfolio-heading">
+            <p class="eyebrow">More bases</p>
+            <h2>Mayu, Novabeast, Nardoragon, and custom</h2>
+          </div>
+          <div class="gallery-grid">
+            <button class="avatar-card" type="button" data-avatar="avatar8">
+              <img src="../avatars/8.png" alt="Stas Mayu avatar" />
+              <span>Stas</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar9">
+              <img src="../avatars/9.png" alt="Kenith Novabeast avatar" />
+              <span>Kenith</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar4">
+              <img src="../avatars/4.png" alt="Null Nardoragon avatar" />
+              <span>Null</span>
+            </button>
+            <button class="avatar-card" type="button" data-avatar="avatar10">
+              <img src="../avatars/11.1.png" alt="Blaze avatar" />
+              <span>Blaze</span>
+            </button>
           </div>
         </div>
       </section>
     </main>
 
-    <div
-      id="avatar-details"
-      class="modal"
-      aria-hidden="true"
-      role="dialog"
-      aria-labelledby="avatar-title"
-    >
-      <div class="modal-content">
-        <span
-          class="close"
-          onclick="closeDetails()"
-          aria-label="Close details"
-          tabindex="0"
-        >
-          &times;
-        </span>
-        <h2 id="avatar-title">Avatar Name</h2>
-        <img id="avatar-img" src="" alt="Full size preview" />
-        <p id="avatar-desc">
-          Detailed character description will appear here...
-        </p>
+    <div class="avatar-modal" id="avatar-details" hidden role="dialog" aria-modal="true">
+      <div class="avatar-modal-content">
+        <button class="modal-close" type="button" data-close-avatar aria-label="Close avatar details">
+          x
+        </button>
+        <img id="avatar-img" src="" alt="Full avatar preview" />
+        <div>
+          <p class="eyebrow" id="avatar-base">Avatar</p>
+          <h2 id="avatar-title">Avatar name</h2>
+          <p id="avatar-desc"></p>
+        </div>
       </div>
     </div>
 
-    <script src="../Scripts/script.js" defer></script>
+    <footer class="site-footer">
+      <div>
+        <h2>Mystic Avatars</h2>
+        <p>Finished work and custom VRChat avatar commissions.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#order">Order</a>
+      </nav>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/gallery.js" defer></script>
   </body>
 </html>
