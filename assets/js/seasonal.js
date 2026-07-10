@@ -1,7 +1,13 @@
 (() => {
   "use strict";
 
-  const currentYear = new Date().getFullYear();
+  const mockDate = "2026-07-10T12:00:00";
+
+  function getNow() {
+    return mockDate ? new Date(mockDate) : new Date();
+  }
+
+  const currentYear = getNow().getFullYear();
 
   const offers = [
     {
@@ -9,34 +15,31 @@
       name: `New Year ${currentYear}`,
       start: [1, 1],
       end: [1, 6],
-      discount: 10,
-      code: `NEWYEAR${String(currentYear).slice(2)}`,
+      discount: 25,
       copy: "Fresh-year avatar edits, file cleanup, and new look planning.",
       dates: "Jan 1 - Jan 6",
-      description: "10% off fresh avatar edits, file cleanup, and planning.",
+      description: "25% off fresh avatar edits, file cleanup, and planning.",
     },
     {
       id: "spring-sale",
       name: `Spring ${currentYear}`,
       start: [3, 20],
       end: [4, 5],
-      discount: 10,
-      code: `SPRING${String(currentYear).slice(2)}`,
+      discount: 15,
       copy: "Bright texture edits and fresh spring style changes.",
       dates: "Mar 20 - Apr 5",
-      description: "10% off bright texture edits and fresh style changes.",
+      description: "15% off bright texture edits and fresh style changes.",
     },
     {
       id: "summer-sale",
       name: `Summer ${currentYear}`,
       start: [6, 10],
-      end: [6, 24],
-      discount: 12,
-      code: `SUMMER${String(currentYear).slice(2)}`,
+      end: [7, 24],
+      discount: 30,
       copy: "Emission, Audiolink direction, and soft glow work.",
-      dates: "Jun 10 - Jun 24",
+      dates: "Jun 10 - Jul 24",
       description:
-        "12% off emissions, Audiolink direction, and soft glow work.",
+        "30% off emissions, Audiolink direction, and soft glow work.",
     },
     {
       id: "black-friday",
@@ -44,7 +47,6 @@
       start: [11, 15],
       end: [11, 29],
       discount: 20,
-      code: `BLACK${String(currentYear).slice(2)}`,
       copy: "Gift-ready commissions booked before the December rush.",
       dates: "Nov 15 - Nov 29",
       description:
@@ -56,23 +58,10 @@
       start: [11, 30],
       end: [12, 6],
       discount: 15,
-      code: `HOLIDAY${String(currentYear).slice(2)}`,
       copy: "Premium and higher setup requests during Holiday Prep Week.",
       minimumPrice: 20,
       dates: "Nov 30 - Dec 6",
       description: "15% off Premium and higher setup requests.",
-    },
-    {
-      id: "christmas-warmup",
-      name: `Christmas ${currentYear}`,
-      start: [12, 7],
-      end: [12, 19],
-      discount: 18,
-      code: `WARM${String(currentYear).slice(2)}`,
-      copy: "Final pre-Christmas planning slots before the holiday queue closes.",
-      dates: "Dec 7 - Dec 19",
-      description:
-        "18% off final pre-Christmas planning before the queue closes.",
     },
     {
       id: "christmas",
@@ -80,7 +69,6 @@
       start: [12, 20],
       end: [12, 26],
       discount: 25,
-      code: `XMAS${String(currentYear).slice(2)}`,
       copy: "New-year planning deposits while holiday slots last.",
       dates: "Dec 20 - Dec 26",
       description:
@@ -103,14 +91,13 @@
       {
         name: "Summer Break",
         start: new Date(year, 5, 1, 0, 0, 0),
-        end: new Date(year, 6, 1, 23, 59, 59),
+        end: new Date(year, 5, 9, 23, 59, 59),
       },
     ];
   };
 
   const saleTitle = document.querySelector("[data-sale-title]");
   const saleCopy = document.querySelector("[data-sale-copy]");
-  const saleCode = document.querySelector("[data-sale-code]");
   const saleCountdown = document.querySelector("[data-sale-countdown]");
   const overlayClosed = document.getElementById("overlay-closed");
   const closedContent = document.querySelector("[data-closed-content]");
@@ -127,7 +114,6 @@
         <span>${offer.dates}</span>
         <h3>${offer.name}</h3>
         <p>${offer.description}</p>
-        <strong data-offer-code="${offer.id}">Loading...</strong>
       `;
       offerGrid.appendChild(article);
     });
@@ -163,7 +149,7 @@
     return ranges;
   };
 
-  const getOfferState = (now = new Date()) => {
+  const getOfferState = (now = getNow()) => {
     const ranges = allRanges(now);
     const current = ranges
       .filter((range) => now >= range.start && now <= range.end)
@@ -177,7 +163,7 @@
     return { current: current || null, next: next || null, ended: ended || [] };
   };
 
-  const getClosureState = (now = new Date()) => {
+  const getClosureState = (now = getNow()) => {
     const year = now.getFullYear();
     const closures = getClosureDates(year);
     const current = closures.find(
@@ -209,16 +195,6 @@
     if (node) node.textContent = value;
   };
 
-  const updateOfferCodes = () => {
-    document.querySelectorAll("[data-offer-code]").forEach((el) => {
-      const offerId = el.dataset.offerCode;
-      const offer = offers.find((o) => o.id === offerId);
-      if (offer) {
-        el.textContent = `Code ${offer.code}`;
-      }
-    });
-  };
-
   const updateOfferCards = (current, next, ended) => {
     document.querySelectorAll("[data-offer-card]").forEach((card) => {
       const cardId = card.dataset.offerCard;
@@ -232,15 +208,37 @@
     });
   };
 
+  function applySaleToPrices(discount) {
+    document.querySelectorAll("[data-package-card]").forEach((card) => {
+      const basePriceEl = card.querySelector(".base-price");
+      const salePriceEl = card.querySelector(".sale-price");
+      const price = parseInt(card.dataset.price);
+
+      if (!basePriceEl || !salePriceEl || isNaN(price)) return;
+
+      if (discount > 0) {
+        const discounted = price * ((100 - discount) / 100);
+        const formatted = Number.isInteger(discounted)
+          ? discounted
+          : discounted.toFixed(2);
+        card.classList.add("has-sale");
+        salePriceEl.textContent = `EUR ${formatted}`;
+      } else {
+        card.classList.remove("has-sale");
+        salePriceEl.textContent = "";
+      }
+    });
+  }
+
   const updateSaleBanner = (state) => {
     const { current, next, ended } = state;
+    const now = getNow();
 
     if (current) {
       const { offer, end } = current;
-      setText(saleTitle, `${offer.name} is live`);
-      setText(saleCopy, `${offer.discount}% off ${offer.copy}`);
-      setText(saleCode, `Use ${offer.code}`);
-      setText(saleCountdown, `Ends in ${formatDuration(end - new Date())}`);
+      setText(saleTitle, `${offer.name}: ${offer.discount}% off`);
+      setText(saleCopy, offer.copy);
+      setText(saleCountdown, `Ends in ${formatDuration(end - now)}`);
       updateOfferCards(current, next, ended);
       return;
     }
@@ -250,7 +248,6 @@
       const { offer } = latestEnded;
       setText(saleTitle, `${offer.name} has ended`);
       setText(saleCopy, `This offer has expired. Check back for new deals.`);
-      setText(saleCode, `Code expired`);
       setText(saleCountdown, `Ended`);
       updateOfferCards(null, next, ended);
       return;
@@ -260,7 +257,6 @@
       const { offer, start } = next;
       setText(saleTitle, `Next offer: ${offer.name}`);
       setText(saleCopy, `${offer.discount}% off ${offer.copy}`);
-      setText(saleCode, `Code ${offer.code}`);
       setText(saleCountdown, `Starts ${formatDate(start)}`);
       updateOfferCards(null, next, ended);
       return;
@@ -268,7 +264,6 @@
 
     setText(saleTitle, "Seasonal offers are being planned");
     setText(saleCopy, "New holiday discounts will appear here when scheduled.");
-    setText(saleCode, "No active code");
     setText(saleCountdown, "Open now");
     updateOfferCards(null, null, ended);
   };
@@ -287,19 +282,26 @@
     const reopens = document.createElement("p");
     title.textContent = "Commissions closed";
     reason.textContent = `Reason: ${state.current.name}`;
-    reopens.textContent = `Reopens in ${formatDuration(state.current.end - new Date())}`;
+    reopens.textContent = `Reopens in ${formatDuration(state.current.end - getNow())}`;
     closedContent.replaceChildren(title, reason, reopens);
     overlayClosed.classList.remove("hidden");
     document.body.classList.add("no-scroll");
   };
 
   const render = () => {
-    const now = new Date();
+    const now = getNow();
     const offerState = getOfferState(now);
     const closureState = getClosureState(now);
-    updateOfferCodes();
+
     updateSaleBanner(offerState);
     updateClosureOverlay(closureState);
+
+    if (offerState.current) {
+      applySaleToPrices(offerState.current.offer.discount);
+    } else {
+      applySaleToPrices(0);
+    }
+
     document.dispatchEvent(
       new CustomEvent("mystic-offer-change", {
         detail: {

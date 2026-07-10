@@ -64,24 +64,6 @@
 
   if (!form) return;
 
-  const blockedWords = [
-    "shit",
-    "fuck",
-    "bitch",
-    "asshole",
-    "bastard",
-    "slut",
-    "whore",
-    "dick",
-    "cock",
-    "pussy",
-    "cunt",
-    "motherfucker",
-    "retard",
-    "rape",
-    "porn",
-  ];
-
   const formatAmount = (amount) => {
     const rounded = Math.round(amount * 100) / 100;
     return Number.isInteger(rounded)
@@ -125,7 +107,9 @@
   const offerLabel = () => {
     if (!activeOffer) return "No active offer";
     if (!chosenPack || isOfferEligible(chosenPack)) {
-      return `${activeOffer.name}: ${activeOffer.discount}% off with ${activeOffer.code}`;
+      return activeOffer.code
+        ? `${activeOffer.name}: ${activeOffer.discount}% off with ${activeOffer.code}`
+        : `${activeOffer.name}: ${activeOffer.discount}% off`;
     }
     return `${activeOffer.name}: not eligible for ${chosenPack}`;
   };
@@ -196,17 +180,10 @@
     orderPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const containsBlockedWord = (value) => {
-    if (!value) return false;
-    const clean = value.toLowerCase().replace(/[^\w\s]/g, " ");
-    return blockedWords.some((word) =>
-      new RegExp(`\\b${word}\\b`, "i").test(clean),
-    );
-  };
-
   const containsLink = (value) => /https?:\/\/|www\./i.test(value || "");
 
   const checkProfanityAPI = async (text) => {
+    if (!text) return false;
     try {
       const response = await fetch(
         `https://www.purgomalum.com/service/containsprofanity?text=${encodeURIComponent(text)}`,
@@ -363,9 +340,7 @@
       formData.get("custom-base"),
     ];
 
-    return fields.some(
-      (value) => containsLink(value) || containsBlockedWord(value),
-    );
+    return fields.some((value) => containsLink(value));
   };
 
   const setSubmitting = (isSubmitting) => {
@@ -409,12 +384,14 @@
     const name = form.querySelector("#name")?.value || "";
     const description = form.querySelector("#description")?.value || "";
     const discordId = form.querySelector("#discord-id")?.value || "";
+    const customBase = form.querySelector("#custom-base")?.value || "";
 
     const profaneName = await checkProfanityAPI(name);
     const profaneDescription = await checkProfanityAPI(description);
     const profaneDiscord = await checkProfanityAPI(discordId);
+    const profaneBase = await checkProfanityAPI(customBase);
 
-    if (profaneName || profaneDescription || profaneDiscord) {
+    if (profaneName || profaneDescription || profaneDiscord || profaneBase) {
       await showModal({
         message:
           "Please remove inappropriate language from your order details.",
@@ -435,7 +412,7 @@
     const formData = new FormData(form);
     if (validateText(formData)) {
       await showModal({
-        message: "Please remove links or blocked words from the order details.",
+        message: "Please remove links from the order details.",
         confirmText: "Okay",
       });
       return;

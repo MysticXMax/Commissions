@@ -118,10 +118,7 @@
           <p data-sale-copy>
             Current and upcoming discounts appear here automatically.
           </p>
-          <div class="announcement-meta">
-            <span data-sale-code>Code loading</span>
-            <span data-sale-countdown>Loading</span>
-          </div>
+          <div data-sale-countdown></div>
         </div>
       </section>
 
@@ -181,7 +178,7 @@
               <h3>Basic Pack</h3>
               <p class="package-price">
                 <span class="base-price">EUR 5</span>
-                <span class="sale-price" data-sale-price></span>
+                <span class="sale-price"></span>
               </p>
               <p>
                 A simple visual pass for concepts, references, or static
@@ -210,12 +207,13 @@
               <h3>Starter Pack</h3>
               <p class="package-price">
                 <span class="base-price">EUR 10</span>
-                <span class="sale-price" data-sale-price></span>
+                <span class="sale-price"></span>
               </p>
               <p>
                 A clean starting package with editable files for a VRChat build.
               </p>
               <ul>
+                <li>Includes everything from Basic Pack</li>
                 <li>1-2 day estimated delivery</li>
                 <li>SPP and Blender file included</li>
                 <li>Retexture with optional Audiolink direction</li>
@@ -242,13 +240,14 @@
               <h3>Premium Pack</h3>
               <p class="package-price">
                 <span class="base-price">EUR 20</span>
-                <span class="sale-price" data-sale-price></span>
+                <span class="sale-price"></span>
               </p>
               <p>
                 A fuller avatar setup for people who want custom clothing and
                 in-world polish.
               </p>
               <ul>
+                <li>Includes everything from Starter Pack</li>
                 <li>2-5 day estimated delivery</li>
                 <li>Custom clothing options</li>
                 <li>PC and Quest compatibility choices</li>
@@ -271,13 +270,14 @@
               <h3>Ultimate Pack</h3>
               <p class="package-price">
                 <span class="base-price">EUR 30</span>
-                <span class="sale-price" data-sale-price></span>
+                <span class="sale-price"></span>
               </p>
               <p>
                 Extra expression with FX work, toggles, and a stronger
                 personality pass.
               </p>
               <ul>
+                <li>Includes everything from Premium Pack</li>
                 <li>1-2 week estimated delivery</li>
                 <li>Audiolink, emission, or particle direction</li>
                 <li>Custom emotes and toggles</li>
@@ -304,13 +304,14 @@
               <h3>Celestial Pack</h3>
               <p class="package-price">
                 <span class="base-price">EUR 40+</span>
-                <span class="sale-price" data-sale-price></span>
+                <span class="sale-price"></span>
               </p>
               <p>
                 The full spotlight package for custom modeling requests and
                 cinematic finishing.
               </p>
               <ul>
+                <li>Includes everything from Ultimate Pack</li>
                 <li>2+ week estimated delivery</li>
                 <li>Custom Blender modeling discussion</li>
                 <li>Promo video spotlight option</li>
@@ -414,7 +415,6 @@
             ></div>
             <form id="order-form" novalidate>
               <input type="hidden" id="selected-pack" name="pack" />
-              <input type="hidden" id="seasonal-offer" name="seasonal-offer" />
 
               <div class="form-grid">
                 <div class="field">
