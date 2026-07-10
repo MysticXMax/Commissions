@@ -1,10 +1,8 @@
 (() => {
   "use strict";
 
-  const mockDate = "2026-07-10T12:00:00";
-
   function getNow() {
-    return mockDate ? new Date(mockDate) : new Date();
+    return new Date();
   }
 
   const currentYear = getNow().getFullYear();
@@ -18,7 +16,8 @@
       discount: 25,
       copy: "Fresh-year avatar edits, file cleanup, and new look planning.",
       dates: "Jan 1 - Jan 6",
-      description: "25% off fresh avatar edits, file cleanup, and planning.",
+      description:
+        "Kick off the year with a massive 25% off sitewide and upgrade your look for less!",
     },
     {
       id: "spring-sale",
@@ -28,18 +27,19 @@
       discount: 15,
       copy: "Bright texture edits and fresh spring style changes.",
       dates: "Mar 20 - Apr 5",
-      description: "15% off bright texture edits and fresh style changes.",
+      description:
+        "Limited time offer! Score an exclusive 15% discount on our entire customization lineup.",
     },
     {
       id: "summer-sale",
       name: `Summer ${currentYear}`,
       start: [6, 10],
-      end: [7, 24],
+      end: [7, 10],
       discount: 30,
       copy: "Emission, Audiolink direction, and soft glow work.",
-      dates: "Jun 10 - Jul 24",
+      dates: "Jun 10 - Jul 9",
       description:
-        "30% off emissions, Audiolink direction, and soft glow work.",
+        "Our biggest sale of the season! Unlock an incredible 30% off your next order today.",
     },
     {
       id: "black-friday",
@@ -50,7 +50,7 @@
       copy: "Gift-ready commissions booked before the December rush.",
       dates: "Nov 15 - Nov 29",
       description:
-        "20% off gift-ready commissions booked before the December rush.",
+        "The ultimate doorbuster deal! Save a guaranteed 20% on all upcoming project slots.",
     },
     {
       id: "holiday-prep",
@@ -61,7 +61,8 @@
       copy: "Premium and higher setup requests during Holiday Prep Week.",
       minimumPrice: 20,
       dates: "Nov 30 - Dec 6",
-      description: "15% off Premium and higher setup requests.",
+      description:
+        "Special event pricing! Enjoy 15% off our premium upgrade options for a limited time.",
     },
     {
       id: "christmas",
@@ -72,7 +73,7 @@
       copy: "New-year planning deposits while holiday slots last.",
       dates: "Dec 20 - Dec 26",
       description:
-        "25% off new-year planning deposits while holiday slots last.",
+        "Our holiday gift to you! Take 25% off and lock in your priority scheduling bonus.",
     },
   ];
 
@@ -223,9 +224,6 @@
           : discounted.toFixed(2);
         card.classList.add("has-sale");
         salePriceEl.textContent = `EUR ${formatted}`;
-      } else {
-        card.classList.remove("has-sale");
-        salePriceEl.textContent = "";
       }
     });
   }
