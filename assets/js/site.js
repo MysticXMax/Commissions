@@ -34,70 +34,58 @@
 })();
 
 window.addEventListener("DOMContentLoaded", async function () {
-  const numbers = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111];
-  const extensions = ["png", "jpg", "jpeg"];
+  // Explicit array of existing avatar files to stop 404 Not Found console errors caused by fetch probing
+  const avatars = [
+    { url: "avatars/1.png", name: "Avatar 1" },
+    { url: "avatars/7.png", name: "Avatar 7" },
+    { url: "avatars/9.png", name: "Avatar 9" },
+    { url: "avatars/11.1.png", name: "Avatar 11.1" },
+  ];
+
   const img = document.getElementById("randomAvatar");
-  let previousNum = null;
+  let previousIndex = null;
   let isChanging = false;
+
+  if (!img) return;
 
   img.style.transition = "opacity 1s ease-in-out";
   img.style.willChange = "opacity";
   img.style.opacity = "0";
 
-  async function getRandomAvatar() {
-    const availableNumbers = numbers.filter((n) => n !== previousNum);
-    const shuffledNumbers = availableNumbers.sort(() => Math.random() - 0.5);
+  function getRandomAvatar() {
+    if (avatars.length === 0) return null;
+    if (avatars.length === 1) return avatars[0];
 
-    for (const num of shuffledNumbers) {
-      const shuffledExts = extensions.sort(() => Math.random() - 0.5);
+    const availableIndices = avatars
+      .map((_, index) => index)
+      .filter((index) => index !== previousIndex);
 
-      for (const ext of shuffledExts) {
-        const url = `avatars/${num}.${ext}`;
-        const exists = await checkFileExists(url);
-
-        if (exists) {
-          return { url, num };
-        }
-      }
-    }
-
-    const shuffledNumbersFull = numbers.sort(() => Math.random() - 0.5);
-    for (const num of shuffledNumbersFull) {
-      const shuffledExts = extensions.sort(() => Math.random() - 0.5);
-
-      for (const ext of shuffledExts) {
-        const url = `avatars/${num}.${ext}`;
-        const exists = await checkFileExists(url);
-
-        if (exists) {
-          return { url, num };
-        }
-      }
-    }
-
-    return null;
+    const randomIndex =
+      availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    return avatars[randomIndex];
   }
 
   async function changeAvatar() {
-    if (isChanging) return;
+    if (isChanging || avatars.length === 0) return;
     isChanging = true;
 
     img.style.opacity = "0";
 
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    const result = await getRandomAvatar();
+    const result = getRandomAvatar();
 
     if (result) {
       img.src = result.url;
-      img.alt = `Avatar ${result.num}`;
-      previousNum = result.num;
+      img.alt = result.name;
+      previousIndex = avatars.findIndex((a) => a.url === result.url);
 
       await new Promise((resolve) => {
         if (img.complete) {
           resolve();
         } else {
           img.onload = resolve;
+          img.onerror = resolve;
         }
       });
 
@@ -107,24 +95,24 @@ window.addEventListener("DOMContentLoaded", async function () {
 
       await new Promise((resolve) => setTimeout(resolve, 1200));
     } else {
-      console.error("No avatar images found!");
       img.style.opacity = "1";
     }
 
     isChanging = false;
   }
 
-  const initialResult = await getRandomAvatar();
+  const initialResult = getRandomAvatar();
   if (initialResult) {
     img.src = initialResult.url;
-    img.alt = `Avatar ${initialResult.num}`;
-    previousNum = initialResult.num;
+    img.alt = initialResult.name;
+    previousIndex = avatars.findIndex((a) => a.url === initialResult.url);
 
     await new Promise((resolve) => {
       if (img.complete) {
         resolve();
       } else {
         img.onload = resolve;
+        img.onerror = resolve;
       }
     });
 
@@ -137,12 +125,3 @@ window.addEventListener("DOMContentLoaded", async function () {
 
   setInterval(changeAvatar, 15000);
 });
-
-async function checkFileExists(url) {
-  try {
-    const response = await fetch(url, { method: "HEAD" });
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-}

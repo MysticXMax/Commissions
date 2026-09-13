@@ -3,41 +3,53 @@
 
   const endpoint = "https://commissions-1e9a.onrender.com/submit";
   const maxFiles = 5;
+  const maxFileSize = 8 * 1024 * 1024;
   const packageInfo = {
     "Basic Pack": {
-      price: 5,
-      display: "EUR 5",
-      timeline: "1 day",
+      price: 10,
+      display: "€10",
+      timeline: "1-3 days",
       clothing: false,
       high: false,
+      extras: [],
     },
     "Starter Pack": {
-      price: 10,
-      display: "EUR 10",
-      timeline: "1-2 days",
+      price: 15,
+      display: "€15",
+      timeline: "2-5 days",
       clothing: false,
       high: false,
+      extras: [],
     },
     "Premium Pack": {
       price: 20,
-      display: "EUR 20",
-      timeline: "2-5 days",
+      display: "€20",
+      timeline: "3-7 days",
       clothing: true,
       high: false,
+      extras: [],
     },
     "Ultimate Pack": {
       price: 30,
-      display: "EUR 30",
+      display: "€30",
       timeline: "1-2 weeks",
       clothing: true,
       high: true,
+      extras: ["Audiolink", "Emission", "Particles", "Custom gestures"],
     },
     "Celestial Pack": {
-      price: 40,
-      display: "EUR 40+",
+      price: 50,
+      display: "€50",
       timeline: "2+ weeks",
       clothing: true,
       high: true,
+      extras: [
+        "Audiolink",
+        "Emission",
+        "Particles",
+        "Custom gestures",
+        "Promo showcase",
+      ],
     },
   };
 
@@ -49,7 +61,6 @@
   const orderPanel = document.querySelector("[data-order-panel]");
   const orderSummary = document.getElementById("order-summary");
   const selectedPackInput = document.getElementById("selected-pack");
-  const seasonalOfferInput = document.getElementById("seasonal-offer");
   const styleField = document.getElementById("style");
   const customBaseField = document.getElementById("custom-base");
   const customBaseWrapper = document.querySelector("[data-custom-base]");
@@ -61,6 +72,10 @@
   const imagePreview = document.getElementById("image-preview");
   const previewConfirm = document.getElementById("preview-confirm");
   const extrasFieldset = document.querySelector(".extras-field");
+  const highPackConfirm = document.querySelector("[data-high-pack-confirm]");
+  const highPackCheck = document.getElementById("high-pack-confirm");
+  const descriptionField = document.getElementById("description");
+  const descriptionCount = document.getElementById("description-count");
 
   if (!form) return;
 
@@ -82,23 +97,18 @@
     const info = packageInfo[packName];
     if (!info || !isOfferEligible(packName, offer))
       return info?.display || "Quote";
-    const amount = info.price * ((100 - offer.discount) / 100);
-    const suffix = packName === "Celestial Pack" ? "+" : "";
-    return `EUR ${formatAmount(amount)}${suffix}`;
+    return `€${formatAmount(info.price * ((100 - offer.discount) / 100))}`;
   };
 
   const updateSalePrices = () => {
     document.querySelectorAll("[data-package-card]").forEach((card) => {
-      const packButton = card.querySelector("[data-pack]");
-      const salePrice = card.querySelector("[data-sale-price]");
-      const packName = packButton?.dataset.pack;
-
+      const packName = card.querySelector("[data-pack]")?.dataset.pack;
+      const salePrice = card.querySelector(".sale-price");
       if (!salePrice || !packName || !isOfferEligible(packName)) {
         card.classList.remove("has-sale");
         if (salePrice) salePrice.textContent = "";
         return;
       }
-
       card.classList.add("has-sale");
       salePrice.textContent = discountedPrice(packName);
     });
@@ -111,46 +121,49 @@
         ? `${activeOffer.name}: ${activeOffer.discount}% off with ${activeOffer.code}`
         : `${activeOffer.name}: ${activeOffer.discount}% off`;
     }
-    return `${activeOffer.name}: not eligible for ${chosenPack}`;
+    return `${activeOffer.name}: not available for ${chosenPack}`;
   };
 
   const renderSummary = () => {
     if (!orderSummary || !chosenPack) return;
-
     const info = packageInfo[chosenPack];
     const price = isOfferEligible(chosenPack)
-      ? `${discountedPrice(chosenPack)} after sale`
+      ? `${discountedPrice(chosenPack)} with the current sale`
       : info.display;
-
-    orderSummary.innerHTML = `
-      <div class="summary-item">
-        <span>Pack</span>
-        <strong>${chosenPack}</strong>
-      </div>
-      <div class="summary-item">
-        <span>Price</span>
-        <strong>${price}</strong>
-      </div>
-      <div class="summary-item">
-        <span>Timeline</span>
-        <strong>${info.timeline}</strong>
-      </div>
-      <div class="summary-item">
-        <span>Sale</span>
-        <strong>${offerLabel()}</strong>
-      </div>
-    `;
+    orderSummary.replaceChildren();
+    [
+      ["Pack", chosenPack],
+      ["Price", price],
+      ["Estimated time", info.timeline],
+      ["Sale", offerLabel()],
+    ].forEach(([label, value]) => {
+      const item = document.createElement("div");
+      const heading = document.createElement("span");
+      const content = document.createElement("strong");
+      item.className = "summary-item";
+      heading.textContent = label;
+      content.textContent = value;
+      item.append(heading, content);
+      orderSummary.append(item);
+    });
   };
 
-  const updateOfferInput = () => {
-    if (!seasonalOfferInput) return;
-    seasonalOfferInput.value = offerLabel();
+  const updateExtras = (allowedExtras) => {
+    const hasExtras = allowedExtras.length > 0;
+    extrasFieldset.hidden = !hasExtras;
+    extrasFieldset.querySelectorAll("[data-extra]").forEach((label) => {
+      const input = label.querySelector("input");
+      const allowed = allowedExtras.includes(input.value);
+      label.hidden = !allowed;
+      input.disabled = !allowed;
+      if (!allowed) input.checked = false;
+    });
   };
 
   const updateConditionalFields = () => {
+    const info = packageInfo[chosenPack];
     const usesCustomBase = styleField?.value === "Other";
-    const needsClothing = Boolean(packageInfo[chosenPack]?.clothing);
-    const isBasic = chosenPack === "Basic Pack";
+    const needsClothing = Boolean(info?.clothing);
 
     if (customBaseWrapper && customBaseField) {
       customBaseWrapper.hidden = !usesCustomBase;
@@ -163,38 +176,31 @@
       if (!needsClothing) clothingField.value = "None";
     }
 
-    if (extrasFieldset) {
-      extrasFieldset.hidden = isBasic;
+    updateExtras(info?.extras || []);
+
+    if (highPackConfirm && highPackCheck) {
+      highPackConfirm.hidden = !info?.high;
+      highPackCheck.required = Boolean(info?.high);
+      if (!info?.high) highPackCheck.checked = false;
     }
+  };
+
+  const updateDescriptionCount = () => {
+    if (!descriptionField || !descriptionCount) return;
+    descriptionCount.textContent = `${descriptionField.value.length} / ${descriptionField.maxLength}`;
   };
 
   const openOrder = (packName) => {
     if (!packageInfo[packName] || !orderPanel) return;
-
     chosenPack = packName;
     selectedPackInput.value = packName;
     orderPanel.hidden = false;
     updateConditionalFields();
-    updateOfferInput();
     renderSummary();
     orderPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const containsLink = (value) => /https?:\/\/|www\./i.test(value || "");
-
-  const checkProfanityAPI = async (text) => {
-    if (!text) return false;
-    try {
-      const response = await fetch(
-        `https://www.purgomalum.com/service/containsprofanity?text=${encodeURIComponent(text)}`,
-      );
-      const result = await response.text();
-      return result === "true";
-    } catch (error) {
-      console.error("Profanity check failed:", error);
-      return false;
-    }
-  };
 
   const showModal = ({ message, confirmText = "OK", cancelText = "" }) =>
     new Promise((resolve) => {
@@ -202,38 +208,22 @@
       const messageBox = document.getElementById("modal-message");
       const confirmBtn = document.getElementById("modal-confirm");
       const cancelBtn = document.getElementById("modal-cancel");
-
       if (!modal || !messageBox || !confirmBtn || !cancelBtn) {
         resolve(true);
         return;
       }
-
       messageBox.textContent = message;
       confirmBtn.textContent = confirmText;
-
-      if (cancelText) {
-        cancelBtn.textContent = cancelText;
-        cancelBtn.classList.remove("hidden");
-      } else {
-        cancelBtn.classList.add("hidden");
-      }
-
-      const cleanup = () => {
+      cancelBtn.hidden = !cancelText;
+      cancelBtn.textContent = cancelText;
+      const close = (answer) => {
+        modal.classList.add("hidden");
         confirmBtn.onclick = null;
         cancelBtn.onclick = null;
-        modal.classList.add("hidden");
+        resolve(answer);
       };
-
-      confirmBtn.onclick = () => {
-        cleanup();
-        resolve(true);
-      };
-
-      cancelBtn.onclick = () => {
-        cleanup();
-        resolve(false);
-      };
-
+      confirmBtn.onclick = () => close(true);
+      cancelBtn.onclick = () => close(false);
       modal.classList.remove("hidden");
     });
 
@@ -244,34 +234,29 @@
   const updatePreviewState = () => {
     if (!previewWrapper || !imagePreview || !fileNameDisplay || !previewConfirm)
       return;
-
     imagePreview.replaceChildren();
-
     selectedFiles.forEach((item) => {
       const wrapper = document.createElement("div");
-      const img = document.createElement("img");
+      const image = document.createElement("img");
       const button = document.createElement("button");
-
       wrapper.className = "preview-item";
       wrapper.dataset.fileId = item.id;
-      img.src = item.url;
-      img.alt = item.file.name;
+      image.src = item.url;
+      image.alt = item.file.name;
       button.className = "preview-remove";
       button.type = "button";
-      button.textContent = "x";
+      button.textContent = "×";
       button.setAttribute("aria-label", `Remove ${item.file.name}`);
-
-      wrapper.append(img, button);
+      wrapper.append(image, button);
       imagePreview.append(wrapper);
     });
-
     const hasFiles = selectedFiles.length > 0;
     previewWrapper.hidden = !hasFiles;
     previewConfirm.required = hasFiles;
     if (!hasFiles) previewConfirm.checked = false;
     fileNameDisplay.textContent = hasFiles
-      ? `${selectedFiles.length} file${selectedFiles.length === 1 ? "" : "s"} selected`
-      : "No files selected";
+      ? `${selectedFiles.length} image${selectedFiles.length === 1 ? "" : "s"} selected`
+      : "No images selected";
   };
 
   const clearFiles = () => {
@@ -283,43 +268,38 @@
 
   const addFiles = async () => {
     if (!fileInput?.files) return;
-
-    const incoming = Array.from(fileInput.files).filter((file) =>
-      file.type.startsWith("image/"),
+    const incoming = Array.from(fileInput.files).filter(
+      (file) => file.type.startsWith("image/") && file.size <= maxFileSize,
     );
     const space = maxFiles - selectedFiles.length;
-
     if (incoming.length === 0) {
       fileInput.value = "";
       await showModal({
-        message: "Please choose image files only.",
+        message: "Please choose image files smaller than 8 MB.",
         confirmText: "Okay",
       });
       return;
     }
-
     if (space <= 0) {
       fileInput.value = "";
       await showModal({
-        message: `You can upload up to ${maxFiles} reference images.`,
+        message: "You can add up to 5 reference images.",
         confirmText: "Okay",
       });
       return;
     }
-
-    const accepted = incoming.slice(0, space).map((file) => ({
-      id: makeFileId(),
-      file,
-      url: URL.createObjectURL(file),
-    }));
-
-    selectedFiles.push(...accepted);
+    selectedFiles.push(
+      ...incoming.slice(0, space).map((file) => ({
+        id: makeFileId(),
+        file,
+        url: URL.createObjectURL(file),
+      })),
+    );
     fileInput.value = "";
     updatePreviewState();
-
-    if (incoming.length > accepted.length) {
+    if (incoming.length > space) {
       await showModal({
-        message: `Only ${maxFiles} reference images can be attached.`,
+        message: "Only 5 reference images can be added.",
         confirmText: "Okay",
       });
     }
@@ -330,17 +310,6 @@
     if (item) URL.revokeObjectURL(item.url);
     selectedFiles = selectedFiles.filter((file) => file.id !== fileId);
     updatePreviewState();
-  };
-
-  const validateText = (formData) => {
-    const fields = [
-      formData.get("name"),
-      formData.get("description"),
-      formData.get("discord-id"),
-      formData.get("custom-base"),
-    ];
-
-    return fields.some((value) => containsLink(value));
   };
 
   const setSubmitting = (isSubmitting) => {
@@ -357,12 +326,11 @@
     selectedPackInput.value = "";
     if (orderPanel) orderPanel.hidden = true;
     updateConditionalFields();
-    updateOfferInput();
+    updateDescriptionCount();
   };
 
   const submitOrder = async (event) => {
     event.preventDefault();
-
     if (!chosenPack) {
       await showModal({
         message: "Please choose a commission pack first.",
@@ -370,73 +338,52 @@
       });
       return;
     }
-
     updateConditionalFields();
-
     if (!form.reportValidity()) {
       await showModal({
-        message: "Please fill in the required fields before submitting.",
-        confirmText: "Okay",
-      });
-      return;
-    }
-
-    const name = form.querySelector("#name")?.value || "";
-    const description = form.querySelector("#description")?.value || "";
-    const discordId = form.querySelector("#discord-id")?.value || "";
-    const customBase = form.querySelector("#custom-base")?.value || "";
-
-    const profaneName = await checkProfanityAPI(name);
-    const profaneDescription = await checkProfanityAPI(description);
-    const profaneDiscord = await checkProfanityAPI(discordId);
-    const profaneBase = await checkProfanityAPI(customBase);
-
-    if (profaneName || profaneDescription || profaneDiscord || profaneBase) {
-      await showModal({
         message:
-          "Please remove inappropriate language from your order details.",
+          "Please fill in the required fields before sending your order.",
         confirmText: "Okay",
       });
       return;
     }
-
-    if (selectedFiles.length > 0 && !previewConfirm.checked) {
+    if (descriptionField.value.length > 5000) {
       await showModal({
-        message:
-          "Please confirm the selected reference images before submitting.",
+        message: "Your avatar description is too long.",
         confirmText: "Okay",
       });
       return;
     }
-
     const formData = new FormData(form);
-    if (validateText(formData)) {
+    const textFields = ["name", "description", "discord-id", "custom-base"];
+    if (textFields.some((field) => containsLink(formData.get(field)))) {
       await showModal({
         message: "Please remove links from the order details.",
         confirmText: "Okay",
       });
       return;
     }
-
-    selectedFiles.forEach((item) => {
-      formData.append("file", item.file);
-    });
-
+    if (selectedFiles.length > 0 && !previewConfirm.checked) {
+      await showModal({
+        message: "Please confirm your reference images before sending.",
+        confirmText: "Okay",
+      });
+      return;
+    }
+    selectedFiles.forEach((item) => formData.append("file", item.file));
     try {
       setSubmitting(true);
       const response = await fetch(endpoint, {
         method: "POST",
         body: formData,
       });
-
       if (!response.ok) throw new Error("Submission failed");
-
       resetOrder();
       document.getElementById("submission-success")?.classList.remove("hidden");
-    } catch (error) {
+    } catch {
       await showModal({
         message:
-          "Submission failed. Please try again or message Mystic on Discord.",
+          "Your order did not send. Please try again or message me on Discord.",
         confirmText: "Okay",
       });
     } finally {
@@ -455,7 +402,6 @@
       openOrder(chosenPack || "Premium Pack");
       return;
     }
-
     if (event.target.closest("[data-cancel-order]")) {
       resetOrder();
       document
@@ -463,30 +409,26 @@
         ?.scrollIntoView({ behavior: "smooth" });
       return;
     }
-
     if (event.target.closest("[data-close-success]")) {
       document.getElementById("submission-success")?.classList.add("hidden");
       return;
     }
-
     const removeButton = event.target.closest(".preview-remove");
-    if (removeButton) {
+    if (removeButton)
       removeFile(removeButton.closest(".preview-item")?.dataset.fileId);
-    }
   });
 
   document.addEventListener("mystic-offer-change", (event) => {
     activeOffer = event.detail.current;
     updateSalePrices();
-    updateOfferInput();
     renderSummary();
   });
 
   styleField?.addEventListener("change", updateConditionalFields);
   fileInput?.addEventListener("change", addFiles);
+  descriptionField?.addEventListener("input", updateDescriptionCount);
   form.addEventListener("submit", submitOrder);
-
   updateSalePrices();
   updateConditionalFields();
-  updateOfferInput();
+  updateDescriptionCount();
 })();

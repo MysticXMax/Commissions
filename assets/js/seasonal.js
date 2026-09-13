@@ -14,10 +14,10 @@
       start: [1, 1],
       end: [1, 6],
       discount: 25,
-      copy: "Fresh-year avatar edits, file cleanup, and new look planning.",
+      copy: "A fresh start for your avatar.",
       dates: "Jan 1 - Jan 6",
       description:
-        "Kick off the year with a massive 25% off sitewide and upgrade your look for less!",
+        "25% off during the New Year sale.",
     },
     {
       id: "spring-sale",
@@ -25,10 +25,10 @@
       start: [3, 20],
       end: [4, 5],
       discount: 15,
-      copy: "Bright texture edits and fresh spring style changes.",
+      copy: "A spring sale for avatar edits.",
       dates: "Mar 20 - Apr 5",
       description:
-        "Limited time offer! Score an exclusive 15% discount on our entire customization lineup.",
+        "15% off during the spring sale.",
     },
     {
       id: "summer-sale",
@@ -36,10 +36,10 @@
       start: [6, 10],
       end: [7, 10],
       discount: 30,
-      copy: "Emission, Audiolink direction, and soft glow work.",
+      copy: "A summer sale for your avatar.",
       dates: "Jun 10 - Jul 9",
       description:
-        "Our biggest sale of the season! Unlock an incredible 30% off your next order today.",
+        "30% off during the summer sale.",
     },
     {
       id: "black-friday",
@@ -47,10 +47,10 @@
       start: [11, 15],
       end: [11, 29],
       discount: 20,
-      copy: "Gift-ready commissions booked before the December rush.",
+      copy: "A Black Friday commission sale.",
       dates: "Nov 15 - Nov 29",
       description:
-        "The ultimate doorbuster deal! Save a guaranteed 20% on all upcoming project slots.",
+        "20% off during the Black Friday sale.",
     },
     {
       id: "holiday-prep",
@@ -58,11 +58,11 @@
       start: [11, 30],
       end: [12, 6],
       discount: 15,
-      copy: "Premium and higher setup requests during Holiday Prep Week.",
-      minimumPrice: 20,
+      copy: "A holiday deal for the bigger packs.",
+      minimumPrice: 10,
       dates: "Nov 30 - Dec 6",
       description:
-        "Special event pricing! Enjoy 15% off our premium upgrade options for a limited time.",
+        "15% off the €10 packs during Holiday Prep Week.",
     },
     {
       id: "christmas",
@@ -70,10 +70,10 @@
       start: [12, 20],
       end: [12, 26],
       discount: 25,
-      copy: "New-year planning deposits while holiday slots last.",
+      copy: "A thank-you sale for the holidays.",
       dates: "Dec 20 - Dec 26",
       description:
-        "Our holiday gift to you! Take 25% off and lock in your priority scheduling bonus.",
+        "25% off during the holiday sale.",
     },
   ];
 
@@ -226,7 +226,7 @@
         card.classList.add("has-sale");
         basePriceEl.style.textDecoration = "line-through";
         basePriceEl.style.color = "#71717a";
-        salePriceEl.textContent = `EUR ${formatted}`;
+        salePriceEl.textContent = `€${formatted}`;
       } else {
         card.classList.remove("has-sale");
         basePriceEl.style.textDecoration = "none";
