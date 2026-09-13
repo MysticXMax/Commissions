@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     { url: "avatars/55.png", name: "Avatar 55" },
     { url: "avatars/66.png", name: "Avatar 66" },
     { url: "avatars/77.png", name: "Avatar 77" },
-    { url: "avatars/88.png", name: "Avatar 88" },
+    { url: "avatars/88.jpg", name: "Avatar 88" },
     { url: "avatars/99.png", name: "Avatar 99" },
     { url: "avatars/111.png", name: "Avatar 111" },
   ];
