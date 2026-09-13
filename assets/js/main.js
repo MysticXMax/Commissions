@@ -22,8 +22,8 @@
       extras: [],
     },
     "Premium Pack": {
-      price: 20,
-      display: "€20",
+      price: 25,
+      display: "€25",
       timeline: "3-7 days",
       clothing: true,
       high: false,
