@@ -34,12 +34,17 @@
 })();
 
 window.addEventListener("DOMContentLoaded", async function () {
-  // Explicit array of existing avatar files to stop 404 Not Found console errors caused by fetch probing
   const avatars = [
-    { url: "avatars/1.png", name: "Avatar 1" },
-    { url: "avatars/7.png", name: "Avatar 7" },
-    { url: "avatars/9.png", name: "Avatar 9" },
-    { url: "avatars/11.1.png", name: "Avatar 11.1" },
+    { url: "avatars/11.png", name: "Avatar 11" },
+    { url: "avatars/22.png", name: "Avatar 22" },
+    { url: "avatars/33.png", name: "Avatar 33" },
+    { url: "avatars/44.png", name: "Avatar 44" },
+    { url: "avatars/55.png", name: "Avatar 55" },
+    { url: "avatars/66.png", name: "Avatar 66" },
+    { url: "avatars/77.png", name: "Avatar 77" },
+    { url: "avatars/88.png", name: "Avatar 88" },
+    { url: "avatars/99.png", name: "Avatar 99" },
+    { url: "avatars/111.png", name: "Avatar 111" },
   ];
 
   const img = document.getElementById("randomAvatar");
