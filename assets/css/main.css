@@ -19,7 +19,9 @@
   --max: 1440px;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -1100,11 +1102,12 @@ input[type="checkbox"] {
   .hero {
     min-height: 500px;
     height: 76svh;
+    max-height: none;
   }
 
   .hero-content {
     width: calc(100% - 36px);
-    padding-bottom: 42px;
+    padding: 72px 0 42px;
   }
 
   .hero h1 {
@@ -1141,13 +1144,19 @@ input[type="checkbox"] {
 
   .hero {
     min-height: 470px;
-    height: 74svh;
+    height: auto;
+    max-height: none;
+    padding-bottom: 0;
   }
 
   .hero-overlay {
     background:
       linear-gradient(90deg, rgba(14, 18, 22, 0.94), rgba(14, 18, 22, 0.54)),
       linear-gradient(0deg, rgba(14, 18, 22, 1) 0%, rgba(14, 18, 22, 0) 48%);
+  }
+
+  .hero-content {
+    padding: 64px 0 36px;
   }
 
   .hero h1 {
