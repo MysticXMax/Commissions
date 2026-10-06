@@ -45,6 +45,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     { url: "avatars/88.jpg", name: "Avatar 88" },
     { url: "avatars/99.png", name: "Avatar 99" },
     { url: "avatars/111.png", name: "Avatar 111" },
+    { url: "avatars/121.png", name: "Avatar 121" },
   ];
 
   const img = document.getElementById("randomAvatar");

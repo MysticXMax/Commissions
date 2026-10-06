@@ -9,14 +9,12 @@
     />
     <title>Mystic Avatar Commissions</title>
 
-    <!-- Favicon & Icons -->
     <link
       rel="icon"
       type="image/png"
-      content="https://mysticxmax.github.io/Commissions/assets/goofy-cat.png"
+      href="https://mysticxmax.github.io/Commissions/assets/goofy-cat.png"
     />
 
-    <!-- Fonts & Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -130,6 +128,10 @@
               <img src="../avatars/11.1.png" alt="Blaze avatar" />
               <span>Blaze</span>
             </button>
+            <button class="avatar-card" type="button" data-avatar="avatar11">
+              <img src="../avatars/12.png" alt="Void avatar" />
+              <span>Void</span>
+            </button>
           </div>
         </div>
       </section>
@@ -149,9 +151,25 @@
           data-close-avatar
           aria-label="Close avatar details"
         >
-          x
+          &#10005;
         </button>
-        <img id="avatar-img" src="" alt="Full avatar preview" />
+        <div class="modal-gallery-view">
+          <button
+            class="slider-btn prev"
+            id="slider-prev"
+            aria-label="Previous image"
+          >
+            &#10094;
+          </button>
+          <img id="avatar-img" src="" alt="Full avatar preview" />
+          <button
+            class="slider-btn next"
+            id="slider-next"
+            aria-label="Next image"
+          >
+            &#10095;
+          </button>
+        </div>
         <div>
           <p class="eyebrow" id="avatar-base">Avatar</p>
           <h2 id="avatar-title">Avatar name</h2>
